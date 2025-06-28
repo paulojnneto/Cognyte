@@ -1,0 +1,46 @@
+# === GLOBAL ===
+.DS_Store
+Thumbs.db
+*.log
+*.env
+.env.*
+
+# Backend/API files
+/api/.classpath
+/api/.project
+/api/.settings/
+/api/target/
+/api/build/
+/api/out/
+/api/.idea/
+/api/*.iml
+/api/.gradle/
+/api/gradle-app.setting
+/api/gradle-wrapper.jar
+/api/gradle/wrapper/gradle-wrapper.properties
+/api/gradlew
+/api/gradlew.bat
+
+# Frontend/view files
+/view/node_modules/
+/view/dist/
+/view/build/
+/view/.next/
+/view/.turbo/
+/view/.env.local
+/view/.env.development.local
+/view/.env.test.local
+/view/.env.production.local
+/view/yarn.lock
+/view/package-lock.json
+/view/coverage/
+/view/.eslintcache
+
+# === IDEs ===
+**/.vscode/
+**/.idea/
+*.sw?
+
+# === SYSTEM FILES ===
+ehthumbs.db
+Icon?
