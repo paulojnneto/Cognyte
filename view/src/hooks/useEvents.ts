@@ -11,12 +11,16 @@ export function useEvents() {
 
   const getEvents = async () => {
     try {
+      setLoading(true)
       const response = await ky.get(API_URL).json<Event[]>();
       setEvents(response);
     } catch (err: any) {
       setError(err.message || 'Erro ao buscar eventos');
     } finally {
-      setLoading(false);
+      //Added timeout just to simulate real usage
+      setTimeout(() => {
+        setLoading(false);
+      }, 5000);
     }
   };
 

@@ -1,5 +1,10 @@
-import { useEvents } from '../hooks/useEvents';
 import { useState } from 'react';
+import { Card } from '../components/Card';
+import { NavBar } from '../components/NavBar';
+import { Table } from '../components/Table/Table';
+import { useEvents } from '../hooks/useEvents';
+import { Wrapper } from '../components/Wrapper';
+import { Loader } from '../components/Loader/Loader';
 
 export const Home = () => {
   const [newName, setNewName] = useState('');
@@ -11,19 +16,24 @@ export const Home = () => {
     createEvent,
   } = useEvents();
 
-  return (
-    <div className="p-4 text-black">
-      <h1 className="text-xl font-bold mb-4">Eventos</h1>
+  console.log({ loading });
 
-      {loading && <p>Carregando...</p>}
-      {error && <p className="text-red-600">Erro: {error}</p>}
-      {events && <ul className="border border-black">
-        {events.map((event, i) => (
-          <li key={i} className="p-2 border-b">
-            <span>{event.title} — {event.status}</span>
-          </li>
-        ))}
-      </ul>}
+  return (
+    <div>
+      <NavBar />
+      <Wrapper>
+        <Card>
+          <div className="p-4 text-black">
+            <h1 className="text-xl font-bold mb-4 text-custom-dark-blue">Eventos</h1>
+
+            {loading && <Loader />}
+            {error && <p className="text-red-600">Erro: {error}</p>}
+            {events && !loading &&
+              <Table items={events} />
+            }
+          </div>
+        </Card>
+      </Wrapper>
     </div>
   );
 }
