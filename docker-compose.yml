@@ -6,6 +6,11 @@ services:
     container_name: cognyte-api
     ports:
       - "8080:8080"
+    volumes:
+      - ./api:/app
+      - /app/build  
+    working_dir: /app
+    command: ./gradlew bootRun
     depends_on:
       - db
     environment:
@@ -20,6 +25,11 @@ services:
     container_name: cognyte-view
     ports:
       - "3000:3000"
+    volumes:
+      - ./view:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
     depends_on:
       - api
     networks:
