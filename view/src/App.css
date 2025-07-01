@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import 'flowbite';
 
 #root {
   max-width: 1280px;

@@ -14,7 +14,7 @@ export const NavBar = () => {
           <ul className="flex justify-center font-medium text-2xl hover:cursor-pointer hover:text-3xl rounded-lg p-2">
             <li>
               <Link to='/'>
-                <a href="#" className="block py-2 px-3 text-custom-dark-blue rounded-sm bg-transparent " aria-current="page">Home</a>
+                <label className="block py-2 px-3 text-custom-dark-blue rounded-sm bg-transparent hover:cursor-pointer ">Home</label>
               </Link>
             </li>
           </ul>

@@ -18,9 +18,9 @@ export function useEvents() {
       setError(err.message || 'Erro ao buscar eventos');
     } finally {
       //Added timeout just to simulate real usage
-      setTimeout(() => {
-        setLoading(false);
-      }, 5000);
+      // setTimeout(() => {
+      setLoading(false);
+      // }, 5000);
     }
   };
 
