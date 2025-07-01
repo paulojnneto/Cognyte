@@ -1,4 +1,6 @@
-export const Input = ({ value, setValue, label }) => {
+import { InputProps } from "../../types/types"
+
+export const Input = ({ value, setValue, label }: InputProps) => {
   return (
     <div>
       <label className="block mb-2 text-2xl font-medium text-custom-dark-blue" >{label}</label>

@@ -9,8 +9,8 @@ import { Datepicker } from '../components/Datepicker';
 
 export const CreateEvent = () => {
   const [title, setTitle] = useState('');
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const [endDate, setEndDate] = useState<Date | null>(new Date());
 
 
   const {

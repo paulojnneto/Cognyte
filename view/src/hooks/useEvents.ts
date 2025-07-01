@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import type { Event } from '../types';
 import ky from 'ky';
+import { Event } from '../types/interfaces';
 
 export function useEvents() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -39,6 +39,7 @@ export function useEvents() {
   //fetch on render to have a list ready to return.
   useEffect(() => {
     getEvents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { events, loading, error, createEvent, deleteEvent, getEvents };

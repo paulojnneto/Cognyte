@@ -1,11 +1,6 @@
 import DatePicker from "react-datepicker"
 import 'react-datepicker/dist/react-datepicker.css';
-
-type DatepickerProps = {
-  label: string;
-  value: Date | null;
-  setValue: (date: Date | null) => void;
-};
+import { DatepickerProps } from "../../types/types";
 
 export const Datepicker = ({ label, value, setValue }: DatepickerProps) => {
   return (

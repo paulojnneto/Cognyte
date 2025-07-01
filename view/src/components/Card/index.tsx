@@ -1,9 +1,4 @@
-import type { ReactNode } from 'react';
-
-interface CardProps {
-  style?: string;
-  children: ReactNode;
-}
+import { CardProps } from '../../types/interfaces';
 
 export const Card = ({ children, style = '' }: CardProps) => {
   return (
