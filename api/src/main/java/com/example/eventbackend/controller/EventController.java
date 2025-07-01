@@ -23,6 +23,14 @@ public class EventController {
         return service.listAll();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<EventModel> getEventById(@PathVariable Long id) {
+        System.out.println("GET /api/events/" + id);
+        return service.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<EventModel> update(@PathVariable Long id, @RequestBody EventModel e) {
         EventModel updated = service.update(id, e);

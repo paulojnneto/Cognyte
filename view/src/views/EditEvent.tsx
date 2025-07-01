@@ -11,16 +11,13 @@ import { PriceInput } from '../components/PriceInput';
 import { Button } from '../components/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import { validateDates } from '../utils';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
-export const CreateEvent = () => {
+export const EditEvent = () => {
   const navigate = useNavigate();
-  const {
-    loading,
-    error,
-    createEvent,
-  } = useEvents();
+
+  const { id } = useParams()
 
   const [title, setTitle] = useState('');
   const [startDate, setStartDate] = useState<Date | null>(new Date());
@@ -28,13 +25,34 @@ export const CreateEvent = () => {
   const [status, setStatus] = useState<string>('');
   const [price, setPrice] = useState<string>('0.00');
 
+  const {
+    loading,
+    error,
+    getEventById,
+    updateEvent
+  } = useEvents();
+
+  useEffect(() => {
+    getEventById(id).then((data) => {
+      setTitle(data?.title);
+      setStartDate(new Date(data?.startDate));
+      setEndDate(new Date(data?.endDate));
+      setStatus(data?.status);
+      setPrice(data?.price)
+    })
+
+    console.log({ startDate });
+
+  }, [id]);
+
+
   const options = [
     { value: 'STARTED', label: 'Started' },
     { value: 'COMPLETED', label: 'Completed' },
     { value: 'PAUSED', label: 'Paused' }
   ]
 
-  const handleCreate = () => {
+  const handleUpdate = () => {
     if (!title) {
       return toast.error("Title field can't be empty")
     }
@@ -52,20 +70,17 @@ export const CreateEvent = () => {
       price,
       status
     }
-    createEvent(event).then(() => {
+    updateEvent(id, event).then(() => {
       if (!error) {
-        toast.success("Event created")
+        toast.success("Event updated")
         navigate('/');
+
       }
     })
     return
 
   }
 
-  useEffect(() => {
-    console.log(startDate);
-
-  }, [startDate])
   useEffect(() => {
     if (error) {
       toast.error(error)
@@ -78,7 +93,7 @@ export const CreateEvent = () => {
       <Wrapper>
         <Card style="">
           <div className="p-4 text-black h-full">
-            <h1 className="text-xl font-bold mb-4 text-custom-dark-blue">New Event</h1>
+            <h1 className="text-xl font-bold mb-4 text-custom-dark-blue">Edit Existing Event</h1>
             {loading && <Loader />}
             {error && <p className="text-red-600">Erro: {error}</p>}
             {!loading &&
@@ -89,10 +104,10 @@ export const CreateEvent = () => {
                     <Datepicker label={'Start date'} value={startDate} setValue={setStartDate} />
                     <Datepicker label={'End date'} value={endDate} setValue={setEndDate} />
                     <PriceInput label='Price' value={price} setValue={setPrice} />
-                    <DropdownSelect label="Status" setValue={setStatus} options={options} />
+                    <DropdownSelect label="Status" value={status} setValue={setStatus} options={options} />
                   </div>
                   <div className="flex justify-center">
-                    <Button text="Confirm" onClick={handleCreate} />
+                    <Button text="Confirm changes" onClick={handleUpdate} />
                   </div>
                 </div>
               </Card>

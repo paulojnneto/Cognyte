@@ -3,15 +3,16 @@ import './index.css';
 
 import { Home } from './views/Home';
 import { CreateEvent } from './views/CreateEvent';
+import { EditEvent } from './views/EditEvent';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/add" element={<CreateEvent />} />
-      {/* <Route path="/edit" element={<EditEvent />} /> */}
+      <Route path="/edit/:id" element={<EditEvent />} />
       {/* Added to navigate user to home on case of any wrong path */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
     </Routes>
   )
 }

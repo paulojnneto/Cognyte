@@ -4,6 +4,7 @@ import com.example.eventbackend.model.EventModel;
 import com.example.eventbackend.repository.EventRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EventService {
@@ -17,6 +18,9 @@ public class EventService {
 
     public List<EventModel> listAll() {
         return repo.findAll();
+    }
+    public Optional<EventModel> findById(Long id) {
+        return repo.findById(id);
     }
 
     public EventModel update(Long id, EventModel e) {
