@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card } from '../components/Card';
 import { NavBar } from '../components/NavBar';
 import { useEvents } from '../hooks/useEvents';
@@ -9,29 +9,61 @@ import { Datepicker } from '../components/Datepicker';
 import { DropdownSelect } from '../components/DropdownSelect';
 import { PriceInput } from '../components/PriceInput';
 import { Button } from '../components/Button';
+import { ToastContainer, toast } from 'react-toastify';
+import { validateDates } from '../utils';
+
 
 export const CreateEvent = () => {
-  const [title, setTitle] = useState('');
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
-  const [endDate, setEndDate] = useState<Date | null>(new Date());
-  const [status, setStatus] = useState();
-  const [price, setPrice] = useState<string>('');
-
-  const options = [
-    { value: 'started', label: 'Started' },
-    { value: 'completed', label: 'Completed' },
-    { value: 'paused', label: 'Paused' }
-  ]
-
-  const handleCreate = () => {
-    console.log({ title, startDate, endDate, status, price });
-  }
-
   const {
     loading,
     error,
-    // createEvent,
+    createEvent,
   } = useEvents();
+
+  const [title, setTitle] = useState('');
+  const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const [endDate, setEndDate] = useState<Date | null>(new Date());
+  const [status, setStatus] = useState<string>('');
+  const [price, setPrice] = useState<string>('0.00');
+
+  const options = [
+    { value: 'STARTED', label: 'Started' },
+    { value: 'COMPLETED', label: 'Completed' },
+    { value: 'PAUSED', label: 'Paused' }
+  ]
+
+  const handleCreate = () => {
+    if (!title) {
+      return toast.error("Title field can't be empty")
+    }
+    if (!status) {
+      return toast.error("Status field can't be empty")
+    }
+    if (!validateDates) {
+      return toast.error("End date can't be before the start")
+    }
+
+    const event = {
+      title,
+      startDate,
+      endDate,
+      price,
+      status
+    }
+    createEvent(event).then(() => {
+      if (!error) {
+        toast.success("Event created")
+      }
+    })
+    return
+
+  }
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error)
+    }
+  }, [error])
 
   return (
     <div>
@@ -60,6 +92,11 @@ export const CreateEvent = () => {
             }
           </div>
         </Card>
+        <ToastContainer
+          autoClose={4000}
+          pauseOnHover={true}
+          position="bottom-right"
+        />
       </Wrapper>
     </div>
   );

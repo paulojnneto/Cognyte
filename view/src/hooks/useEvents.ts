@@ -22,17 +22,34 @@ export function useEvents() {
       }
     } finally {
       //Added timeout just to simulate real usage
-      // setTimeout(() => {
-      setLoading(false);
-      // }, 5000);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
     }
   };
 
   const createEvent = async (newEvent: Omit<Event, 'id'>) => {
-    await ky.post(API_URL, {
-      json: newEvent,
-    });
-    await getEvents();
+    try {
+      setLoading(true)
+      await ky.post(API_URL, {
+        json: newEvent,
+      });
+      await getEvents();
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Error on fetching events');
+      }
+      setLoading(false)
+      return true
+    } finally {
+      //Again just to simulate real usage
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+      setError(null)
+    }
   };
 
   const deleteEvent = async (id: number) => {

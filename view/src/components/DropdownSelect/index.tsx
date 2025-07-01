@@ -8,7 +8,7 @@ export const DropdownSelect = ({ options, setValue, label }) => {
         className="border border-custom-dark-blue focus:outline "
         classNames={{ control: () => '!bg-blue-50' }}
         options={options}
-        onChange={(option) => setValue(option)}
+        onChange={({ value = '' }) => setValue(value)}
       />
     </div>
   )
