@@ -1,7 +1,8 @@
 type InputProps = {
-  value: string;
+  value: string | number;
   setValue: (value: string) => void;
   label: string;
+  className?: string;
 };
 
 type DatepickerProps = {

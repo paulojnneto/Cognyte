@@ -14,8 +14,12 @@ export function useEvents() {
       setLoading(true)
       const response = await ky.get(API_URL).json<Event[]>();
       setEvents(response);
-    } catch (err: any) {
-      setError(err.message || 'Erro ao buscar eventos');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Error on fetching events');
+      }
     } finally {
       //Added timeout just to simulate real usage
       // setTimeout(() => {
