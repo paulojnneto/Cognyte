@@ -8,6 +8,7 @@ import { Input } from '../components/Input';
 import { Datepicker } from '../components/Datepicker';
 import { DropdownSelect } from '../components/DropdownSelect';
 import { PriceInput } from '../components/PriceInput';
+import { Button } from '../components/Button';
 
 export const CreateEvent = () => {
   const [title, setTitle] = useState('');
@@ -22,6 +23,9 @@ export const CreateEvent = () => {
     { value: 'paused', label: 'Paused' }
   ]
 
+  const handleCreate = () => {
+    console.log({ title, startDate, endDate, status, price });
+  }
 
   const {
     loading,
@@ -33,18 +37,25 @@ export const CreateEvent = () => {
     <div>
       <NavBar />
       <Wrapper>
-        <Card>
-          <div className="p-4 text-black">
+        <Card style="">
+          <div className="p-4 text-black h-full">
             <h1 className="text-xl font-bold mb-4 text-custom-dark-blue">New Event</h1>
             {loading && <Loader />}
             {error && <p className="text-red-600">Erro: {error}</p>}
             {!loading &&
-              <Card style="!bg-blue-50">
-                <Input label="Event title" value={title} setValue={setTitle} />
-                <Datepicker label={'Start date'} value={startDate} setValue={setStartDate} />
-                <Datepicker label={'End date'} value={endDate} setValue={setEndDate} />
-                <PriceInput label='Price' value={price} setValue={setPrice} />
-                <DropdownSelect label="Status" setValue={setStatus} options={options} />
+              <Card style="!bg-blue-50 !h-3/4">
+                <div className='grid grid-cols-1 content-around h-full'>
+                  <div>
+                    <Input label="Event title" value={title} setValue={setTitle} />
+                    <Datepicker label={'Start date'} value={startDate} setValue={setStartDate} />
+                    <Datepicker label={'End date'} value={endDate} setValue={setEndDate} />
+                    <PriceInput label='Price' value={price} setValue={setPrice} />
+                    <DropdownSelect label="Status" setValue={setStatus} options={options} />
+                  </div>
+                  <div className="flex justify-center">
+                    <Button text="Confirm" onClick={handleCreate} />
+                  </div>
+                </div>
               </Card>
             }
           </div>

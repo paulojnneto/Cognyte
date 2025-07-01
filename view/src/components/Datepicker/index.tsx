@@ -12,7 +12,7 @@ export const Datepicker = ({ label, value, setValue }: DatepickerProps) => {
           onChange={(date) => setValue(date)}
           showTimeSelect
           dateFormat="MM/dd/yyyy hh:mm aa"
-          className="border w-[200px] border-custom-dark-blue focus:outline rounded p-2.5"
+          className="border w-[200px] border-custom-dark-blue focus:outline p-2.5"
         />
       </div>
     </div>

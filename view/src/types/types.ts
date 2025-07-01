@@ -11,4 +11,9 @@ type DatepickerProps = {
   setValue: (date: Date | null) => void;
 };
 
-export { InputProps, DatepickerProps }
+type ButtonProps = {
+  text: string;
+  onClick: () => void;
+};
+
+export { InputProps, DatepickerProps, ButtonProps }

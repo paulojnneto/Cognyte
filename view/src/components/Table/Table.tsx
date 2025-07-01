@@ -1,7 +1,7 @@
 import { TableLine } from "./TableLine"
 
 export const Table = ({ items = [] }) => {
-  const titles = ["Title", "price", "Starting Date", "Ending Date", "Status"]
+  const titles = ["Title", "price", "Starting Date", "Ending Date", "status"]
   return (
     <div className="py-8 w-full">
       <div className="shadow overflow-hidden rounded border-black">

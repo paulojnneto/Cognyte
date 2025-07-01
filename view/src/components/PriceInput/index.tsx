@@ -32,7 +32,7 @@ export const PriceInput = ({ value, setValue, label }: InputProps) => {
         inputMode="numeric"
         value={formattedDisplayValue}
         onChange={handleChange}
-        className="border focus:outline border-custom-dark-blue rounded block w-full p-2.5"
+        className="border focus:outline border-custom-dark-blue block w-full p-2.5"
         required
       />
     </div>
