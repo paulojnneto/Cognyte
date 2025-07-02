@@ -15,7 +15,6 @@ Thumbs.db
 /api/*.iml
 /api/.gradle/
 /api/gradle-app.setting
-/api/gradle/wrapper/gradle-wrapper.properties
 
 # Frontend/view files
 /view/node_modules/
