@@ -54,7 +54,7 @@ Cognyte/
 
 ```bash
 git https://github.com/paulojnneto/Cognyte.git
-cd cognyte-event-manager
+cd cognyte
 ```
 
 ### 2. Configure `.env`
