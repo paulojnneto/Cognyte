@@ -63,10 +63,6 @@ export const CreateEvent = () => {
   }
 
   useEffect(() => {
-    console.log(startDate);
-
-  }, [startDate])
-  useEffect(() => {
     if (error) {
       toast.error(error)
     }

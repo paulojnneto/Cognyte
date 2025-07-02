@@ -14,6 +14,7 @@ type DatepickerProps = {
 type ButtonProps = {
   text: string;
   onClick: () => void;
+  className?: string;
 };
 
 export { InputProps, DatepickerProps, ButtonProps }

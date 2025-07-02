@@ -12,6 +12,7 @@ import { Button } from '../components/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import { validateDates } from '../utils';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Modal } from '../components/Modal';
 
 
 export const EditEvent = () => {
@@ -25,12 +26,26 @@ export const EditEvent = () => {
   const [status, setStatus] = useState<string>('');
   const [price, setPrice] = useState<string>('0.00');
 
+  const [toggleModal, setToggleModal] = useState<boolean>(false)
+
   const {
     loading,
     error,
     getEventById,
-    updateEvent
+    updateEvent,
+    deleteEvent
   } = useEvents();
+
+  const handleDelete = () => {
+    deleteEvent(id).then(() => {
+      if (!error) {
+        setToggleModal(false)
+        toast.success("Event deleted")
+        navigate('/');
+      }
+    })
+  }
+
 
   useEffect(() => {
     getEventById(id).then((data) => {
@@ -40,8 +55,6 @@ export const EditEvent = () => {
       setStatus(data?.status);
       setPrice(data?.price)
     })
-
-    console.log({ startDate });
 
   }, [id]);
 
@@ -70,15 +83,14 @@ export const EditEvent = () => {
       price,
       status
     }
+
     updateEvent(id, event).then(() => {
       if (!error) {
         toast.success("Event updated")
         navigate('/');
-
       }
     })
     return
-
   }
 
   useEffect(() => {
@@ -107,7 +119,12 @@ export const EditEvent = () => {
                     <DropdownSelect label="Status" value={status} setValue={setStatus} options={options} />
                   </div>
                   <div className="flex justify-center">
-                    <Button text="Confirm changes" onClick={handleUpdate} />
+                    <div className='p-6'>
+                      <Button className='!bg-red-600' text="Delete event" onClick={() => setToggleModal(true)} />
+                    </div>
+                    <div className='p-6'>
+                      <Button text="Confirm changes" onClick={handleUpdate} />
+                    </div>
                   </div>
                 </div>
               </Card>
@@ -119,6 +136,7 @@ export const EditEvent = () => {
           pauseOnHover={true}
           position="bottom-right"
         />
+        <Modal isOpen={toggleModal} title={`Deleting event '${title}'`} cancelHandler={() => setToggleModal(false)} confirmHandler={() => handleDelete()} />
       </Wrapper>
     </div>
   );

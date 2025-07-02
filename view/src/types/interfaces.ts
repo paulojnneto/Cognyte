@@ -11,4 +11,11 @@ interface CardProps {
   children: ReactNode;
 }
 
-export { Event, CardProps }
+interface ModalProps {
+  isOpen: boolean;
+  title?: string;
+  confirmHandler: () => void;
+  cancelHandler: () => void;
+}
+
+export { Event, CardProps, ModalProps }
