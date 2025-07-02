@@ -11,8 +11,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/add" element={<CreateEvent />} />
       <Route path="/edit/:id" element={<EditEvent />} />
-      {/* Added to navigate user to home on case of any wrong path */}
-      {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }

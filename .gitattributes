@@ -1,6 +1,15 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Normalize all text files to LF
+* text=auto eol=lf
 
-gradlew text eol=lf
+# Ensure shell scripts use LF
+*.sh text eol=lf
 *.gradle text eol=lf
-*.bat text eol=crlf
+gradlew text eol=lf
+gradlew.bat text eol=crlf
+
+# Keep images and binaries untouched
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary

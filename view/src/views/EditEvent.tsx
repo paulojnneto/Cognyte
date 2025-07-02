@@ -1,18 +1,22 @@
 import { useEffect, useState } from 'react';
-import { Card } from '../components/Card';
-import { NavBar } from '../components/NavBar';
-import { useEvents } from '../hooks/useEvents';
-import { Wrapper } from '../components/Wrapper';
-import { Loader } from '../components/Loader/Loader';
-import { Input } from '../components/Input';
-import { Datepicker } from '../components/Datepicker';
-import { DropdownSelect } from '../components/DropdownSelect';
-import { PriceInput } from '../components/PriceInput';
-import { Button } from '../components/Button';
 import { ToastContainer, toast } from 'react-toastify';
-import { validateDates } from '../utils';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Modal } from '../components/Modal';
+
+import { validateDates } from '../utils';
+import { useEvents } from '../hooks/useEvents';
+
+import {
+  Modal,
+  Button,
+  PriceInput,
+  DropdownSelect,
+  Datepicker,
+  Input,
+  Loader,
+  Wrapper,
+  NavBar,
+  Card
+} from '../components';
 
 
 export const EditEvent = () => {

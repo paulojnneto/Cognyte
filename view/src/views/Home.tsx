@@ -3,7 +3,7 @@ import { NavBar } from '../components/NavBar';
 import { Table } from '../components/Table/Table';
 import { useEvents } from '../hooks/useEvents';
 import { Wrapper } from '../components/Wrapper';
-import { Loader } from '../components/Loader/Loader';
+import { Loader } from '../components/Loader';
 
 export const Home = () => {
   const {
