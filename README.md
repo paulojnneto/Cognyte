@@ -96,16 +96,6 @@ npm install
 npm run dev
 ```
 
----
-
-## 🧪 Testing Access
-
-1. Open browser at: `http://localhost:3000`
-2. Use the interface to create events.
-3. Confirm that API calls are working (via DevTools > Network).
-
----
-
 ## 🐛 Troubleshooting
 
 - If you see errors like `^M: bad interpreter`, run:
