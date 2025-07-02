@@ -53,7 +53,7 @@ Cognyte/
 ### 1. Clone the project
 
 ```bash
-git clone https://github.com/your-username/cognyte-event-manager.git
+git https://github.com/paulojnneto/Cognyte.git
 cd cognyte-event-manager
 ```
 
