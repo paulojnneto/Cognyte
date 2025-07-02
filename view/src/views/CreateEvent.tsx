@@ -14,7 +14,7 @@ import {
   Loader,
   Wrapper,
   NavBar
-} from '../components';
+} from "../components";
 
 
 export const CreateEvent = () => {
@@ -32,9 +32,9 @@ export const CreateEvent = () => {
   const [price, setPrice] = useState<string>('0.00');
 
   const options = [
-    { value: 'STARTED', label: 'Started' },
-    { value: 'COMPLETED', label: 'Completed' },
-    { value: 'PAUSED', label: 'Paused' }
+    { value: "STARTED", label: "Started" },
+    { value: "COMPLETED", label: "Completed" },
+    { value: "PAUSED", label: "Paused" }
   ]
 
   const handleCreate = () => {
@@ -58,7 +58,7 @@ export const CreateEvent = () => {
     createEvent(event).then(() => {
       if (!error) {
         toast.success("Event created")
-        navigate('/');
+        navigate("/");
       }
     })
     return
@@ -75,19 +75,19 @@ export const CreateEvent = () => {
     <div>
       <NavBar />
       <Wrapper>
-        <Card style="">
+        <Card>
           <div className="p-4 text-black h-full">
             <h1 className="text-xl font-bold mb-4 text-custom-dark-blue">New Event</h1>
             {loading && <Loader />}
             {error && <p className="text-red-600">Erro: {error}</p>}
             {!loading &&
               <Card style="!bg-blue-50 !h-3/4">
-                <div className='grid grid-cols-1 content-around h-full'>
-                  <div>
-                    <Input label="Event title" value={title} setValue={setTitle} />
-                    <Datepicker label={'Start date'} value={startDate} setValue={setStartDate} />
-                    <Datepicker label={'End date'} value={endDate} setValue={setEndDate} />
-                    <PriceInput label='Price' value={price} setValue={setPrice} />
+                <div className="grid grid-cols-1 content-start h-full">
+                  <Input label="Event title" value={title} setValue={setTitle} />
+                  <div className="grid grid-cols-1">
+                    <Datepicker label={"Start date"} value={startDate} setValue={setStartDate} />
+                    <Datepicker label={"End date"} value={endDate} setValue={setEndDate} />
+                    <PriceInput label="Price" value={price} setValue={setPrice} />
                     <DropdownSelect label="Status" setValue={setStatus} options={options} />
                   </div>
                   <div className="flex justify-center">
